@@ -1,0 +1,56 @@
+{
+    "steps": [
+        {
+            "Click button": {
+                "button": "cmd_l"
+            }
+        },
+        {
+            "Type": {
+                "text": "paint"
+            }
+        },
+        {
+            "Click button": {
+                "button": "enter"
+            }
+        },
+        {
+            "Hold and press": {
+                "hold_button": "cmd_l",
+                "pressed_button": "up"
+            }
+        },
+        {
+            "Click at position": {
+                "x_cord": 283,
+                "y_cord": 72
+            }
+        },
+        {
+            "Click at position": {
+                "x_cord": 705,
+                "y_cord": 107
+            }
+        },
+        {
+            "Click at position": {
+                "x_cord": 736,
+                "y_cord": 265
+            }
+        },
+        {
+            "Click at position": {
+                "x_cord": 964,
+                "y_cord": 62
+            }
+        },
+        {
+            "Draw line": {
+                "start_x": 112,
+                "start_y": 498,
+                "lenght": 200
+            }
+        }
+    ]
+}
