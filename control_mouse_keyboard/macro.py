@@ -29,7 +29,7 @@ class Contloller:
         """Click keyboard button
 
         Args:
-            button (Button): button to clikc
+            button (mouse.Button): button to clikc
         """
         self.keyboard.press(button)
         self.keyboard.release(button)
@@ -48,8 +48,8 @@ class Contloller:
         """Press and hold seleced button
 
         Args:
-            hold_button (button): button to hold
-            pressed_button (Button): button to press
+            hold_button (mouse.Button): button to hold
+            pressed_button (mouse.Button): button to press
         """
         with self.keyboard.pressed(hold_button):
             self.keyboard.press(pressed_button)
@@ -136,7 +136,7 @@ class Process:
         self.controller.release_mouse_button()
 
     def start(self):
-        """_summary_
+        """Performs the indicated actions downloaded from the json file
         """
         options = {
             "Type": self.controller.type,

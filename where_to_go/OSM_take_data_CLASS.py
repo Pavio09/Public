@@ -66,7 +66,7 @@ class OSM:
             path_for_map (str): path for new map
 
         Returns:
-            module: open url in a new page ("tab") of the default browser with created map from OSM
+           Open url in a new page ("tab") of the default browser with created map from OSM
         """
         self.zoom_start = 16
         self.default = 'Brak'
