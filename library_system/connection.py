@@ -43,15 +43,15 @@ class CheckSelectedData:
         data = self.selected_date.get_data()
         for items in data:
             Person = namedtuple(
-                'Person', 'id_book title author created_at email person'
-                )
+                "Person", "id_book title author created_at email person"
+            )
             selected_person = Person(*items)
             person_with_delayed_books[selected_person.id_book] = (
-                    selected_person.title,
-                    selected_person.person,
-                    selected_person.created_at,
-                    selected_person.email
-                    )
+                selected_person.title,
+                selected_person.person,
+                selected_person.created_at,
+                selected_person.email
+            )
 
         return person_with_delayed_books
 
@@ -68,7 +68,7 @@ class SendEmial:
         Returns:
             This will return the rendered template as unicode string
         """
-        jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader('template'))
+        jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader("template"))
         templ = jinja_env.get_template(template)
 
         return templ.render(**kwargs)
@@ -91,13 +91,13 @@ class SendEmial:
         """
 
         to_list = [x for x in to if x is not None]
-        msg = MIMEMultipart('alternative')
-        msg['From'] = sender
-        msg['Subject'] = subject
-        msg['To'] = ','.join(to)
-        msg.attach(MIMEText(body, 'html'))
+        msg = MIMEMultipart("alternative")
+        msg["From"] = sender
+        msg["Subject"] = subject
+        msg["To"] = ",".join(to)
+        msg.attach(MIMEText(body, "html"))
 
-        smtp_server = 'smtp.gmail.com'
+        smtp_server = "smtp.gmail.com"
         port = 465
         context = ssl.create_default_context()
         server_python = smtplib.SMTP_SSL(smtp_server, port, context=context)

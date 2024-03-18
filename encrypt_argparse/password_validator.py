@@ -29,26 +29,26 @@ class Validate(PasswordValidate):
 
     def validate_lenght(self):
         if len(self.password) < 8:
-            raise LenghtErrorException("Za krótkie hasło!")
+            raise LenghtErrorException("Too short a password!")
 
         return True
 
     def validate_symbols(self):
         if not any([x for x in self.password if x in '!@#$%^&*()']):
-            raise SymbolErrorException("Brak znaku specialnego!")
+            raise SymbolErrorException("Missing special symbol!")
 
         return True
 
     def validate_letters(self):
         if not any([x for x in self.password if x.isupper()]):
-            raise LetterErrorException("Brak dużej litery!")
+            raise LetterErrorException("Missing capital letter!")
         if not any([x for x in self.password if x.islower()]):
-            raise LetterErrorException("Brak małej litery!")
+            raise LetterErrorException("Missing small letter!")
         return True
 
     def validate_numbers(self):
         if not any([x for x in self.password if x.isnumeric()]):
-            raise NumberErrorException("Brak cyfry!")
+            raise NumberErrorException("Missing number!")
 
         return True
 
@@ -58,5 +58,4 @@ class Validate(PasswordValidate):
             self.validate_lenght(),
             self.validate_numbers(),
             self.validate_letters()
-                ]):
-           return True
+        ]): return True

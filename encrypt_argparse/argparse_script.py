@@ -9,25 +9,25 @@ help_mode = """encrypt given file or files
                 decrypt encrypted file or files
                 append -> decrypt file, append text and encrypt the file again"""
 
-parser.add_argument('-m',
-                    '--mode',
-                    choices=['encrypt','decrypt','append'],
+parser.add_argument("-m",
+                    "--mode",
+                    choices=["encrypt","decrypt","append"],
                     help=help_mode)
 
-parser.add_argument('-p',
-                    '--password',
-                    help='Enter password')
+parser.add_argument("-p",
+                    "--password",
+                    help="Enter password")
 
-parser.add_argument('-v',
-                    '--verbose')
+parser.add_argument("-v",
+                    "--verbose")
 
-parser.add_argument('--file',
-                    action='append',
-                    help='List of files to processing')
+parser.add_argument("--file",
+                    action="append",
+                    help="List of files to processing")
 
-parser.add_argument('--folder',
-                    action='append',
-                    help='Path to folder with files to be processed')
+parser.add_argument("--folder",
+                    action="append",
+                    help="Path to folder with files to be processed")
 
 args = parser.parse_args()
 valid_password = Validate(args.password).total_result()

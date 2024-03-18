@@ -21,7 +21,7 @@ class SafeFile:
     """Encoding or decoding of data within a designated file
     """
     def __init__(self, password: str, type_of_crypt: str):
-        if type_of_crypt not in ['encrypt', 'decrypt']:
+        if type_of_crypt not in ["encrypt", "decrypt"]:
             raise WrongTypeOfCoding("Wrong coding option selected")
         else:
             self.type_of_crypt = type_of_crypt
@@ -34,7 +34,7 @@ class SafeFile:
         Returns:
             object: fernet token based on encoding binary data on URL-safe base64-encoded key
         """
-        salt = b'test12341234'
+        salt = b"test12341234"
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
             length=32,
@@ -53,7 +53,7 @@ class SafeFile:
             str: A secure message which is referred to Fernet token
         """
         fernet = self.set_pbkdf()
-        safe_string = fernet.encrypt(self.text.encode('utf8'))
+        safe_string = fernet.encrypt(self.text.encode("utf8"))
 
         return safe_string
 
@@ -64,7 +64,7 @@ class SafeFile:
             str: The original string
         """
         fernet = self.set_pbkdf()
-        decrypt_string = fernet.decrypt(self.text).decode('utf8')
+        decrypt_string = fernet.decrypt(self.text).decode("utf8")
 
         return decrypt_string
 
@@ -74,9 +74,9 @@ class SafeFile:
         Returns:
             method: activates the selected method
         """
-        if self.type_of_crypt == 'encrypt':
+        if self.type_of_crypt == "encrypt":
             return self.encrypt()
-        elif self.type_of_crypt == 'decrypt':
+        elif self.type_of_crypt == "decrypt":
             return self.decrypt()
 
     def read_file(self, selected_type_of_read: str, path: str):
@@ -111,16 +111,18 @@ class SafeFile:
         Args:
             path (str): path to file
         """
-        setting = namedtuple('Setting', ['reader', 'writer'])
+        setting = namedtuple("Setting", ["reader", "writer"])
         mapping_type_of_coding = {
-            'encrypt':setting('r', 'wb'),
-            'decrypt':setting('rb', 'w')
+            "encrypt":setting("r", "wb"),
+            "decrypt":setting("rb", "w")
         }
         selection = mapping_type_of_coding[self.type_of_crypt]
         self.text = self.read_file(selected_type_of_read=selection.reader, path=path)
 
         safe_text = self.crypto()
 
-        self.write_file(selected_type_of_write=selection.writer,
-                        path=path,
-                        safe_text=safe_text)
+        self.write_file(
+            selected_type_of_write=selection.writer,
+            path=path,
+            safe_text=safe_text
+        )

@@ -18,9 +18,9 @@ class MyManager:
 
         self.connection.close()
 
-if __name__ == '__main__':
-    destination = ''
-    author = 'Henryk Sienkiewicz'
+if __name__ == "__main__":
+    destination = ""
+    author = "Henryk Sienkiewicz"
     connection = sqlite3.connect(destination)
     with MyManager(connection) as database:
-        database.cursor.execute('Select * from books where author = ?', (author, ))
+        database.cursor.execute("Select * from books where author = ?", (author, ))

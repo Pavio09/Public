@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "public-repo"
+version = "0.1.0"
+description = "This is public repo"
+authors = ["Dawid Jankowski"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+cryptography = "^42.0.5"
+pypdf2 = "^3.0.1"
+pandas = "^2.2.1"
+pdfplumber = "^0.11.0"
+pynput = "^1.7.6"
+pytest = "^8.1.1"
+jinja2 = "^3.1.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
