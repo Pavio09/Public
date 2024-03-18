@@ -117,7 +117,7 @@ class Process:
         """Reads the contents of the specified json file
         """
         with open(self.filename) as file:
-            self.steps = json.load(file)['steps']
+            self.steps = json.load(file)["steps"]
 
     def draw_line(self, start_x, start_y, lenght):
         """Draws lines
@@ -156,12 +156,12 @@ class Process:
 
 def main():
     controller = Contloller()
-    process = Process('actions.json', controller)
+    process = Process("actions.json", controller)
     process.load_steps()
     process.start()
 
     # controller.click_button(keyboard.Key.cmd_l)
-    # controller.type('Paint')
+    # controller.type("Paint")
     # controller.click_button(keyboard.Key.enter)
     # controller.press_and_hold(keyboard.Key.cmd_l, keyboard.Key.up)
     # controller.click_at_position(283, 72)
@@ -170,5 +170,5 @@ def main():
     # controller.click_at_position(964, 62)
     # controller.set_position(112, 498)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
