@@ -1,0 +1,15 @@
+name: Dev terraform destroy
+
+on:
+  push:
+    branches:
+      - int
+  workflow_dispatch:
+
+jobs:
+  deploy-ecr:
+    uses: ./.github/workflows/terraform-destroy.yml
+    secrets: inherit
+    with:
+      branch_name: ${{ github.ref_name }}
+      environment: "dev"

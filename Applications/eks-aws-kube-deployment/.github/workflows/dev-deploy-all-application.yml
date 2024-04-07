@@ -1,0 +1,15 @@
+name: Dev application deployment
+
+on:
+  push:
+    branches:
+      - int
+  workflow_dispatch:
+
+jobs:
+  deploy-resources:
+    uses: ./.github/workflows/terraform-deploy-application.yml
+    secrets: inherit
+    with:
+      branch_name: ${{ github.ref_name }}
+      environment: "dev"
