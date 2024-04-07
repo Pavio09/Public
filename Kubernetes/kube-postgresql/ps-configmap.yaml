@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: ps-demo
+  labels:
+    app: postgres
+data:
+  name-db: demo_db
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-admin-config
+  namespace: ps-demo
+  labels:
+    app: pgadmin
+data:
+  defualt-emial: sample@gmail.com
+  pgadmin-port: "80"

@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: ps-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: 'postgres:14'
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                    name: postgres-config
+                    key: name-db
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                    name: postgres-secret
+                    key: postgres-root-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                    name: postgres-secret
+                    key: postgres-root-password
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgresdata
+      volumes:
+        - name: postgresdata
+          persistentVolumeClaim:
+            claimName: postgres-volume-claim
+
+--- 
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin
+  namespace: ps-demo
+spec:
+  selector:
+   matchLabels:
+    app: pgadmin
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+    spec:
+      containers:
+        - name: pgadmin4
+          image: dpage/pgadmin4
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: pgadmin-port
+          env:
+            - name: PGADMIN_DEFAULT_EMAIL
+              valueFrom:
+                configMapKeyRef:
+                    name: postgres-admin-config
+                    key: defualt-emial
+            - name: PGADMIN_PORT
+              valueFrom:
+                configMapKeyRef:
+                    name: postgres-admin-config
+                    key: pgadmin-port
+            - name: PGADMIN_DEFAULT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-admin-secret
+                  key: postgres-admin-password
