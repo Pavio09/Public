@@ -1,0 +1,24 @@
+name: Dev application deployment
+
+on:
+  push:
+    branches:
+      - int
+  workflow_dispatch:
+
+jobs:
+  deploy-resources:
+    uses: ./.github/workflows/terraform-deploy-application.yml
+    secrets: inherit
+    with:
+      branch_name: ${{ github.ref_name }}
+      environment: "dev"
+  deploy-image:
+    needs: deploy-resources
+    uses: ./.github/workflows/terraform-deploy-docker-image.yml
+    secrets: inherit
+    with:
+      branch_name: ${{ github.ref_name }}
+      ECR_REPOSITORY: dev-django-map
+      IMAGE_TAG: "0.0.2"
+      LOCALIZATION_DOCKERFILE: ./src/backend/

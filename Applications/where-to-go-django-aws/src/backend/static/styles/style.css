@@ -1,0 +1,41 @@
+#map {
+    margin: 10px;
+    height: 890px;
+}
+/* height powoduje rozjechanie się kiedy jest popup wybierz punkty */
+#overlay-div {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background-color: #697077a6;
+    z-index: 999;
+    border-radius: 10px;
+  }
+#title-map {
+    text-align: right;
+    margin-right: 10px;
+    text-shadow: 0 0 2px #b1aaaa;
+}
+#popup-distance {
+    top: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1;
+    text-align: center;
+    color: rgba(0, 0, 0, 0);
+}
+#popup {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1;
+    color: #842029;
+    background-color: #f8d7da;
+    border: 1px solid #2e2d2d;
+}
+.dropdown-menu-custom {
+    --bs-dropdown-padding-x: 0.5rem !important;
+}

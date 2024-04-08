@@ -1,0 +1,8 @@
+cache
+src/backend/Map/__pycache__
+terraform/.terraform/*
+terraform/terraform.tfstate
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate.backup
+terraform/.terraform.tfstate.lock.info
+notes.txt

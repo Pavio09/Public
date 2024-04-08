@@ -1,0 +1,17 @@
+name: Dev docker image
+
+on:
+  push:
+    branches:
+      - int
+  workflow_dispatch:
+
+jobs:
+  deploy-ecr:
+    uses: ./.github/workflows/terraform-deploy-docker-image.yml
+    secrets: inherit
+    with:
+      branch_name: ${{ github.ref_name }}
+      ECR_REPOSITORY: dev-django-map
+      IMAGE_TAG: "0.0.1"
+      LOCALIZATION_DOCKERFILE: ./src/backend/
